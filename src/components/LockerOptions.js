@@ -15,7 +15,7 @@ const LockerOptions = () => {
     return ( 
         <>
         {toggleDisplay
-        ? <LockerOptionsActive />
+        ? <LockerOptionsActive toggleDisplay = {toggleDisplay} changeHandler = {handleDisplaySwitch} />
         : <LockerOptionsInactive toggleDisplay = {toggleDisplay} changeHandler = {handleDisplaySwitch}/>
         }
         </>
