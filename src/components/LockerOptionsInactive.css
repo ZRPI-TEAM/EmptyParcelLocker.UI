@@ -1,0 +1,15 @@
+.locker-options {
+    width: 100vw;
+    height: 40vh;
+    background-color: #FCC905;
+    position: relative;
+}
+
+.locker-options__display {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    text-align: center;
+    line-height: 50px;
+}
