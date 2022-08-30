@@ -8,7 +8,32 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 const Map = () => {
 
-    const position = [51.505, -0.09]
+    const arrLockers = [
+        {
+            coordinates: [51.505, -0.09],
+            address: 0
+        } ,
+
+        {
+            coordinates: [51.500, -0.09],
+            address: 1
+        } ,
+        
+        {
+            coordinates: [51.510, -0.09],
+            address: 2
+        } ,
+
+        {
+            coordinates: [51.505, -0.10],
+            address: 3
+        } ,
+
+        {
+            coordinates: [51.505, -0.07],
+            address: 4
+        } 
+    ]
 
     return ( 
         <div className="map">
@@ -20,12 +45,16 @@ const Map = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            <Marker position={position}>
-                <Popup>
-                    To jest paczkomat
-                    <br /> Ma nazwę id i wogle 
-                </Popup>
-            </Marker>
+            {/* Mapping arrLockers and creating multiple markers on map */}
+            
+            {arrLockers.map(mappedObject => (
+                <Marker position={mappedObject.coordinates}>
+                    <Popup>
+                        {mappedObject.address}
+                    </Popup>
+                </Marker>
+            ))}
+
             </MapContainer>
         </div>
      );
