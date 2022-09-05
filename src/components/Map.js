@@ -6,34 +6,7 @@ import './Map.css';
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
-const Map = () => {
-
-    const arrLockers = [
-        {
-            coordinates: [51.505, -0.09],
-            address: 0
-        } ,
-
-        {
-            coordinates: [51.500, -0.09],
-            address: 1
-        } ,
-        
-        {
-            coordinates: [51.510, -0.09],
-            address: 2
-        } ,
-
-        {
-            coordinates: [51.505, -0.10],
-            address: 3
-        } ,
-
-        {
-            coordinates: [51.505, -0.07],
-            address: 4
-        } 
-    ]
+const Map = (props) => {
 
     return ( 
         <div className="map">
@@ -47,7 +20,7 @@ const Map = () => {
 
             {/* Mapping arrLockers and creating multiple markers on map */}
             
-            {arrLockers.map(mappedObject => (
+            {props.arrLockers.map(mappedObject => (
                 <Marker position={mappedObject.coordinates}>
                     <Popup>
                         {mappedObject.address}

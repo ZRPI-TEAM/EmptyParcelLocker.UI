@@ -4,7 +4,7 @@ import './LockerOptions.css';
 import LockerOptionsInactive from './LockerOptionsInactive';
 import LockerOptionsActive from './LockerOptionsActive';
 
-const LockerOptions = () => {
+const LockerOptions = (props) => {
 
     const [toggleDisplay, setToggleDisplay] = useState(false);
 
@@ -15,8 +15,8 @@ const LockerOptions = () => {
     return ( 
         <>
         {toggleDisplay
-        ? <LockerOptionsActive toggleDisplay = {toggleDisplay} changeHandler = {handleDisplaySwitch} />
-        : <LockerOptionsInactive toggleDisplay = {toggleDisplay} changeHandler = {handleDisplaySwitch}/>
+        ? <LockerOptionsActive toggleDisplay = {toggleDisplay} changeHandler = {handleDisplaySwitch} arrLockers = {props.arrLockers}/>
+        : <LockerOptionsInactive toggleDisplay = {toggleDisplay} changeHandler = {handleDisplaySwitch} arrLockers = {props.arrLockers}/>
         }
         </>
      );
