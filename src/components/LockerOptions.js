@@ -15,8 +15,8 @@ const LockerOptions = (props) => {
     return ( 
         <>
         {toggleDisplay
-        ? <LockerOptionsActive toggleDisplay = {toggleDisplay} changeHandler = {handleDisplaySwitch} arrLockers = {props.arrLockers}/>
-        : <LockerOptionsInactive toggleDisplay = {toggleDisplay} changeHandler = {handleDisplaySwitch} arrLockers = {props.arrLockers}  chosenLocker = {props.chosenLocker}/>
+        ? <LockerOptionsActive toggleDisplay = {toggleDisplay} changeHandler = {handleDisplaySwitch} arrLockers = {props.arrLockers} chosenLocker = {props.chosenLocker}/>
+        : <LockerOptionsInactive toggleDisplay = {toggleDisplay} changeHandler = {handleDisplaySwitch} arrLockers = {props.arrLockers}  chosenLockerName = {props.chosenLockerName}/>
         }
         </>
      );

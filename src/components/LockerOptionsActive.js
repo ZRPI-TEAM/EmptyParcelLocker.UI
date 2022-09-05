@@ -17,13 +17,13 @@ const LockerOptionsActive = (props) => {
                         Dostępne skrytki:
                     </h2>
                     <h3 className="locker-options__available--small">
-                        Małe:
+                        Małe: {props.chosenLocker.small}
                     </h3>
                     <h3 className="locker-options__available--medium">
-                        Średnie:
+                        Średnie: {props.chosenLocker.medium}
                     </h3>
                     <h3 className="locker-options__available--large">
-                        Duże:
+                        Duże: {props.chosenLocker.large}
                     </h3>
                 </div>
 

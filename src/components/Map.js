@@ -23,12 +23,11 @@ const Map = (props) => {
             {props.arrLockers.map(mappedObject => (
                 <Marker 
                 position={mappedObject.coordinates} 
-                name = {mappedObject.address}
 
                 // Here put actual locker name once acquired
 
                 eventHandlers={{click: () => {
-                    props.handleLockerChoice(mappedObject.address)
+                    props.handleLockerChoice(mappedObject.address, mappedObject.id)
                 }}}
                 >
                     <Popup>
