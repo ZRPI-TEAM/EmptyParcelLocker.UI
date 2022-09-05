@@ -21,7 +21,16 @@ const Map = (props) => {
             {/* Mapping arrLockers and creating multiple markers on map */}
             
             {props.arrLockers.map(mappedObject => (
-                <Marker position={mappedObject.coordinates}>
+                <Marker 
+                position={mappedObject.coordinates} 
+                name = {mappedObject.address}
+
+                // Here put actual locker name once acquired
+
+                eventHandlers={{click: () => {
+                    props.handleLockerChoice(mappedObject.address)
+                }}}
+                >
                     <Popup>
                         {mappedObject.address}
                     </Popup>

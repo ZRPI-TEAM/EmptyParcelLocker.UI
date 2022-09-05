@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import './App.css';
 import Header from './components/Header';
 import Map from './components/Map';
@@ -32,11 +33,17 @@ function App() {
     } 
 ]
 
+const [chosenLocker, setChosenLocker] = useState("Nazwa paczkomatu");
+
+const handleLockerChoice = (name) => {
+    setChosenLocker(name);
+} 
+
   return (
     <div className="App">
         <Header />
-        <Map arrLockers = {arrLockers}/>
-        <LockerOptions arrLockers = {arrLockers}/>
+        <Map arrLockers = {arrLockers} handleLockerChoice = {handleLockerChoice}/>
+        <LockerOptions arrLockers = {arrLockers} chosenLocker = {chosenLocker} handleLockerChoice = {handleLockerChoice}/>
     </div>
   );
 }
