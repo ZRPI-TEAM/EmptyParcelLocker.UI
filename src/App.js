@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Header from './components/Header';
 import Map from './components/Map';
@@ -6,52 +6,26 @@ import LockerOptions from './components/LockerOptions';
 
 function App() {
 
-  const arrLockers = [
-    {
-        id: 0,
-        coordinates: [51.505, -0.09],
-        address: 0, 
-        small: 0,
-        medium: 0,
-        large: 0
-    } ,
+  const [arrLockers, setArrLockers] = useState([]);
 
-    {
-        id: 1,
-        coordinates: [51.500, -0.09],
-        address: 1,
-        small: 1,
-        medium: 1,
-        large: 1
-    } ,
-    
-    {
-        id: 2,
-        coordinates: [51.510, -0.09],
-        address: 2,
-        small: 2,
-        medium: 2,
-        large: 2
-    } ,
+// Data fetching
 
-    {
-        id: 3,
-        coordinates: [51.505, -0.10],
-        address: 3,
-        small: 3,
-        medium: 3,
-        large: 3
-    } ,
+const getApiData = async () => {
+    const response = await fetch(
+      "http://localhost:5033/ParcelLocker/all", {
+        mode: 'no-cors'
+      }
+    ).then((response) => response.json());
+  
+    // update the state
+    setArrLockers(response);
+  };
 
-    {
-        id: 4,
-        coordinates: [51.505, -0.07],
-        address: 4,
-        small: 4,
-        medium: 4,
-        large: 4
-    } 
-]
+  useEffect(() => {
+    getApiData();
+  }, []);
+
+
 
 const [chosenLocker, setChosenLocker] = useState();
 const [chosenLockerName, setChosenLockerName] = useState("Nazwa paczkomatu");
