@@ -9,7 +9,10 @@ const LockerOptions = (props) => {
     const [toggleDisplay, setToggleDisplay] = useState(false);
 
     const handleDisplaySwitch = (toggle) => {
-        setToggleDisplay(toggle);
+        if(props.chosenLockerName === "Nazwa paczkomatu"){
+            alert("Proszę wybrać paczkomat")
+        }
+        else setToggleDisplay(toggle);
     }
 
     return ( 
