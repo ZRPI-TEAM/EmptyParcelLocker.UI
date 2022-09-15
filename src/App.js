@@ -11,15 +11,14 @@ function App() {
 // Data fetching
 
 const getApiData = async () => {
-    const response = await fetch(
-      "http://localhost:5033/ParcelLocker/all", {
-        mode: 'no-cors'
-      }
-    ).then((response) => response.json());
-  
-    // update the state
-    setArrLockers(response);
-  };
+  fetch("http://localhost:5033/ParcelLocker/all")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setArrLockers(data)
+      })
+    }
 
   useEffect(() => {
     getApiData();

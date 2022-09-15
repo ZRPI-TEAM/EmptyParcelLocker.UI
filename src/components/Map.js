@@ -10,7 +10,7 @@ const Map = (props) => {
 
     return ( 
         <div className="map">
-            <MapContainer id='mapContainer' center={[51.505, -0.09]} 
+            <MapContainer id='mapContainer' center={[49.75750794284093, 18.62290616610615]} 
             zoom={13} 
             scrollWheelZoom={true}>
             <TileLayer
@@ -22,7 +22,7 @@ const Map = (props) => {
             
             {props.arrLockers.map(mappedObject => (
                 <Marker 
-                position={mappedObject.coordinates} 
+                position={[mappedObject.latitude, mappedObject.longitude]} 
 
                 // Here put actual locker name once acquired
 
