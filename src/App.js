@@ -26,23 +26,20 @@ const getApiData = async () => {
 
 
 
-const [chosenLocker, setChosenLocker] = useState();
+const [chosenLockerID, setChosenLockerID] = useState();
 const [chosenLockerName, setChosenLockerName] = useState("Nazwa paczkomatu");
+
 
 const handleLockerChoice = (street, number, id) => {
     setChosenLockerName(`${street}, ${number}`);
-
-    const obj = arrLockers.find(obj => {
-        return obj.id === id;
-    });
-    setChosenLocker(obj)
+    setChosenLockerID(id)
 } 
 
   return (
     <div className="App">
         <Header />
         <Map arrLockers = {arrLockers} handleLockerChoice = {handleLockerChoice}/>
-        <LockerOptions arrLockers = {arrLockers} chosenLocker = {chosenLocker} chosenLockerName = {chosenLockerName} handleLockerChoice = {handleLockerChoice}/>
+        <LockerOptions arrLockers = {arrLockers} chosenLockerID = {chosenLockerID} chosenLockerName = {chosenLockerName} handleLockerChoice = {handleLockerChoice}/>
     </div>
   );
 }

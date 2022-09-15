@@ -20,8 +20,9 @@ const Map = (props) => {
 
             {/* Mapping arrLockers and creating multiple markers on map */}
             
-            {props.arrLockers.map(mappedObject => (
+            {props.arrLockers.map((mappedObject, index) => (
                 <Marker 
+                key={index}
                 position={[mappedObject.latitude, mappedObject.longitude]} 
 
                 // Here put actual locker name once acquired

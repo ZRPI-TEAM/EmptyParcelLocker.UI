@@ -1,11 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import './LockerOptionsInactive.css';
-
+  
 const LockerOptionsInactive = (props) => {
 
-    const handleDisplaySwitch = () => {
-      props.changeHandler(true)
-    }
+    const [counter, setCounter] = useState(0);
+
+    const handleDisplaySwitch = async() => {
+      props.changeHandler(true);
+
+      fetch(`http://localhost:5033/Locker/${props.chosenLockerID}`)
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+       props.setLockerStatus(data)
+      })
+  }
+
+
+
+  // Z jakiegoś powodu to nie liczy tych skrytek jak chciałem 
+    
+  // Tutaj jest funkcja
+   
+  const fun = () => {
+    if(typeof props.lockerStatus === 'undefined') return;
+    else{
+    props.lockerStatus.forEach(obj => {
+        if(obj.isEmpty === true) {
+            if(obj.lockerType.name === "small") props.setSmall(props.small+1)
+            else if(obj.lockerType.name === "medium") props.setMedium(props.medium+1)
+            else if(obj.lockerType.name === "large") props.setLarge(props.large+1)
+        }
+    });
+  }}
+
+  // Tutaj ją wywołuję 
+
+  useEffect(() => {
+    fun()
+    },props.lockerStatus);
 
     return ( 
         <div className="locker-options">

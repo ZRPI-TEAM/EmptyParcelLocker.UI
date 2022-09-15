@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './LockerOptionsActive.css';
 
 const LockerOptionsActive = (props) => {
+
+
 
     const handleDisplaySwitch = () => {
         props.changeHandler(false)
@@ -17,13 +19,13 @@ const LockerOptionsActive = (props) => {
                         Dostępne skrytki:
                     </h2>
                     <h3 className="locker-options__available--small">
-                        Małe: {props.chosenLocker.small}
+                        Małe: {props.small}
                     </h3>
                     <h3 className="locker-options__available--medium">
-                        Średnie: {props.chosenLocker.medium}
+                        Średnie: {props.medium}
                     </h3>
                     <h3 className="locker-options__available--large">
-                        Duże: {props.chosenLocker.large}
+                        Duże: {props.large}
                     </h3>
                 </div>
 
