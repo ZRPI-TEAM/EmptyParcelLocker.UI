@@ -29,8 +29,8 @@ const getApiData = async () => {
 const [chosenLocker, setChosenLocker] = useState();
 const [chosenLockerName, setChosenLockerName] = useState("Nazwa paczkomatu");
 
-const handleLockerChoice = (name, id) => {
-    setChosenLockerName(name);
+const handleLockerChoice = (street, number, id) => {
+    setChosenLockerName(`${street}, ${number}`);
 
     const obj = arrLockers.find(obj => {
         return obj.id === id;

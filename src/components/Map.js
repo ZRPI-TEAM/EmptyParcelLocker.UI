@@ -27,11 +27,11 @@ const Map = (props) => {
                 // Here put actual locker name once acquired
 
                 eventHandlers={{click: () => {
-                    props.handleLockerChoice(mappedObject.address, mappedObject.id)
+                    props.handleLockerChoice(mappedObject.address.street, mappedObject.address.buildingNumber, mappedObject.id)
                 }}}
                 >
                     <Popup>
-                        {mappedObject.address}
+                        {mappedObject.address.street} {mappedObject.address.buildingNumber}
                     </Popup>
                 </Marker>
             ))}
