@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './LockerOptionsActive.css';
 
 const LockerOptionsActive = (props) => {
 
-
+    console.log(props)
 
     const handleDisplaySwitch = () => {
         props.changeHandler(false)

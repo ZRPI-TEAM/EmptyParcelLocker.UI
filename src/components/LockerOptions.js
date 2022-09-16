@@ -7,7 +7,7 @@ import LockerOptionsActive from './LockerOptionsActive';
 const LockerOptions = (props) => {
 
     const [toggleDisplay, setToggleDisplay] = useState(false);
-    const [lockerStatus, setLockerStatus] = useState();
+    const [lockerStatus, setLockerStatus] = useState([]);
 
     const [small, setSmall] = useState(0);
     const [medium, setMedium] = useState(0);

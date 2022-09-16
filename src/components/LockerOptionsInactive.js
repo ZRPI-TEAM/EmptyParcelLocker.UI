@@ -1,20 +1,32 @@
-import React, { useState, useEffect, useRef} from 'react';
+import React from 'react';
 import './LockerOptionsInactive.css';
   
 const LockerOptionsInactive = (props) => {
 
-    const [counter, setCounter] = useState(0);
+  const url = `http://localhost:5033/Locker/${props.chosenLockerID}`;
+
+  const fetching = async() => {
+    await fetch(url)
+    .then(response => {
+      if(response.ok) {
+        console.log("sukces");
+      }
+      else console.log("porazka");
+      return response.json()
+    })
+    .then(data => {
+    props.setLockerStatus(data);
+    fun(data) 
+    })
+  }
+    
 
     const handleDisplaySwitch = async() => {
+
+      fetching();
+      // fun();
       props.changeHandler(true);
 
-      fetch(`http://localhost:5033/Locker/${props.chosenLockerID}`)
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-       props.setLockerStatus(data)
-      })
   }
 
 
@@ -23,23 +35,29 @@ const LockerOptionsInactive = (props) => {
     
   // Tutaj jest funkcja
    
-  const fun = () => {
-    if(typeof props.lockerStatus === 'undefined') return;
+  const fun = (lockerStatus) => {
+    console.log("fun lata");
+    if(typeof lockerStatus === 'undefined') return;
     else{
-    props.lockerStatus.forEach(obj => {
+    lockerStatus.forEach(obj => {
         if(obj.isEmpty === true) {
-            if(obj.lockerType.name === "small") props.setSmall(props.small+1)
-            else if(obj.lockerType.name === "medium") props.setMedium(props.medium+1)
-            else if(obj.lockerType.name === "large") props.setLarge(props.large+1)
+            if(obj.lockerType.name === "small") {
+              props.setSmall(props.small+1);
+              console.log("Liczem")
+            }
+              
+  
+            if(obj.lockerType.name === "medium") props.setMedium(props.medium+1)
+            if(obj.lockerType.name === "large") props.setLarge(props.large+1)
         }
     });
   }}
 
   // Tutaj ją wywołuję 
 
-  useEffect(() => {
-    fun()
-    },props.lockerStatus);
+  // useEffect(() => {
+  //   fun()
+  //   },props.lockerStatus);
 
     return ( 
         <div className="locker-options">
