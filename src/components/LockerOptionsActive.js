@@ -32,7 +32,7 @@ const LockerOptionsActive = (props) => {
 
                 <button 
                     onClick={handleDisplaySwitch}
-                    className='locker-options__button--showState'>Wróć
+                    className='locker-options__button--showStateActive'>Wróć
                 </button>
             </div>
         </div>
