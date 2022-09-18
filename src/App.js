@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Header from './components/Header';
 import Map from './components/Map';
@@ -6,70 +6,40 @@ import LockerOptions from './components/LockerOptions';
 
 function App() {
 
-  const arrLockers = [
-    {
-        id: 0,
-        coordinates: [51.505, -0.09],
-        address: 0, 
-        small: 0,
-        medium: 0,
-        large: 0
-    } ,
+  const [arrLockers, setArrLockers] = useState([]);
 
-    {
-        id: 1,
-        coordinates: [51.500, -0.09],
-        address: 1,
-        small: 1,
-        medium: 1,
-        large: 1
-    } ,
-    
-    {
-        id: 2,
-        coordinates: [51.510, -0.09],
-        address: 2,
-        small: 2,
-        medium: 2,
-        large: 2
-    } ,
+// Data fetching
 
-    {
-        id: 3,
-        coordinates: [51.505, -0.10],
-        address: 3,
-        small: 3,
-        medium: 3,
-        large: 3
-    } ,
+const getApiData = async () => {
+  fetch("http://localhost:5033/ParcelLocker/all")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setArrLockers(data)
+      })
+    }
 
-    {
-        id: 4,
-        coordinates: [51.505, -0.07],
-        address: 4,
-        small: 4,
-        medium: 4,
-        large: 4
-    } 
-]
+  useEffect(() => {
+    getApiData();
+  }, []);
 
-const [chosenLocker, setChosenLocker] = useState();
+
+
+const [chosenLockerID, setChosenLockerID] = useState();
 const [chosenLockerName, setChosenLockerName] = useState("Nazwa paczkomatu");
 
-const handleLockerChoice = (name, id) => {
-    setChosenLockerName(name);
 
-    const obj = arrLockers.find(obj => {
-        return obj.id === id;
-    });
-    setChosenLocker(obj)
+const handleLockerChoice = (street, number, id) => {
+    setChosenLockerName(`${street}, ${number}`);
+    setChosenLockerID(id)
 } 
 
   return (
     <div className="App">
         <Header />
         <Map arrLockers = {arrLockers} handleLockerChoice = {handleLockerChoice}/>
-        <LockerOptions arrLockers = {arrLockers} chosenLocker = {chosenLocker} chosenLockerName = {chosenLockerName} handleLockerChoice = {handleLockerChoice}/>
+        <LockerOptions arrLockers = {arrLockers} chosenLockerID = {chosenLockerID} chosenLockerName = {chosenLockerName} handleLockerChoice = {handleLockerChoice}/>
     </div>
   );
 }

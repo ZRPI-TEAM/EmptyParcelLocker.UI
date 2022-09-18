@@ -10,7 +10,7 @@ const Map = (props) => {
 
     return ( 
         <div className="map">
-            <MapContainer id='mapContainer' center={[51.505, -0.09]} 
+            <MapContainer id='mapContainer' center={[49.75750794284093, 18.62290616610615]} 
             zoom={13} 
             scrollWheelZoom={true}>
             <TileLayer
@@ -20,18 +20,19 @@ const Map = (props) => {
 
             {/* Mapping arrLockers and creating multiple markers on map */}
             
-            {props.arrLockers.map(mappedObject => (
+            {props.arrLockers.map((mappedObject, index) => (
                 <Marker 
-                position={mappedObject.coordinates} 
+                key={index}
+                position={[mappedObject.latitude, mappedObject.longitude]} 
 
                 // Here put actual locker name once acquired
 
                 eventHandlers={{click: () => {
-                    props.handleLockerChoice(mappedObject.address, mappedObject.id)
+                    props.handleLockerChoice(mappedObject.address.street, mappedObject.address.buildingNumber, mappedObject.id)
                 }}}
                 >
                     <Popup>
-                        {mappedObject.address}
+                        {mappedObject.address.street} {mappedObject.address.buildingNumber}
                     </Popup>
                 </Marker>
             ))}
