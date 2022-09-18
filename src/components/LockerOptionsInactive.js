@@ -5,6 +5,8 @@ const LockerOptionsInactive = (props) => {
 
   const url = `http://localhost:5033/Locker/${props.chosenLockerID}`;
 
+  // Fetching data specific to chosen parcel locker
+
   const fetching = async() => {
     await fetch(url)
     .then(response => {
@@ -16,48 +18,45 @@ const LockerOptionsInactive = (props) => {
     })
     .then(data => {
     props.setLockerStatus(data);
-    fun(data) 
+    countFreeLockers(data) 
     })
   }
-    
 
     const handleDisplaySwitch = async() => {
 
       fetching();
-      // fun();
       props.changeHandler(true);
 
   }
 
+  // Those three hold onfo about lockers until it is passed to the state
 
+  let small = 0;
+  let medium = 0;
+  let large = 0;
 
-  // Z jakiegoś powodu to nie liczy tych skrytek jak chciałem 
-    
-  // Tutaj jest funkcja
+  // This function helps with passing info to each respective state
+
+  const appendStateChange = () => {
+    props.setSmall(small);
+    props.setMedium(medium);
+    props.setLarge(large);
+  }
+
+  // This counts free lockers
    
-  const fun = (lockerStatus) => {
-    console.log("fun lata");
+  const countFreeLockers = (lockerStatus) => {
     if(typeof lockerStatus === 'undefined') return;
     else{
     lockerStatus.forEach(obj => {
         if(obj.isEmpty === true) {
-            if(obj.lockerType.name === "small") {
-              props.setSmall(props.small+1);
-              console.log("Liczem")
-            }
-              
-  
-            if(obj.lockerType.name === "medium") props.setMedium(props.medium+1)
-            if(obj.lockerType.name === "large") props.setLarge(props.large+1)
+            if(obj.lockerType.name === "small") small = small+1;
+            if(obj.lockerType.name === "medium") medium = medium+1;
+            if(obj.lockerType.name === "large") large = large+1;
         }
     });
+    appendStateChange();
   }}
-
-  // Tutaj ją wywołuję 
-
-  // useEffect(() => {
-  //   fun()
-  //   },props.lockerStatus);
 
     return ( 
         <div className="locker-options">

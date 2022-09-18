@@ -3,10 +3,11 @@ import './LockerOptionsActive.css';
 
 const LockerOptionsActive = (props) => {
 
-    console.log(props)
-
     const handleDisplaySwitch = () => {
-        props.changeHandler(false)
+        props.changeHandler(false);
+        props.setSmall(0);
+        props.setMedium(0);
+        props.setLarge(0);
       }
 
     return ( 
